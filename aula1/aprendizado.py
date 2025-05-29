@@ -8,21 +8,46 @@ class Pessoa:
 
 
 pessoa = Pessoa('João', 25)
+
+# ""+""
+# f'{pessoa.nome} eh str'
+# " 'nome' {0}".format('maria nascimento')
+
+
+
+descricao = """ 
+oi
+comentario muito grande
+"""
+
+print(descricao)
+
 pessoa.apresentar()
 
+frutas = ['maçã', 'banana', 'laranja', 0]
 nome = 'leandro'
 sobrenome = "lovo"
 idade = 20
 verdade = True
 falso = False
 
+dicionario = {
+    'Aluno 1': "Davi",
+    'Aluno 2': "Daniel",
+    0: "Valor 0",
+    'frutas': frutas,
+}
+
+print(dicionario['Aluno 1'])
+print(dicionario)
+
+
+
 def funcao_exemplo():
     print('Função exemplo executada')
 
 funcao_exemplo()
 
-
-frutas = ['maçã', 'banana', 'laranja', 0]
 for fruta in frutas:
     print('Fruta:', fruta)
 
@@ -42,5 +67,8 @@ if (verdade):
 
 print(nome)
 
+# and, or e not
+
+diga = str(input('Digite seu nome: '))
 
 print('fim')
