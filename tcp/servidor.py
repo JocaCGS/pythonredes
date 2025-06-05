@@ -8,14 +8,33 @@ def start_server(host: str, port: int):
 
     print(f'Servidor iniciado em {host}:{port}')
 
-    client_socket, address = server_socket.accept()
-    data = client_socket.recv(1024)
-    message = data.decode('utf-8')
 
-    print(message)
+    while True:
+        client_socket, address = server_socket.accept()
 
-    client_socket.close()
+        while True:
 
+            data = client_socket.recv(1024)
+
+            if not data:
+                print('Cliente desconectou')
+                client_socket.close()
+                server_socket.close()
+                return
+
+            message = data.decode('utf-8')
+
+            print(f'[CLIENTE]: {message}' )
+
+            
+            if message == 'exit':
+                print('Servidor encerrado pelo cliente')
+                client_socket.close()
+                server_socket.close()
+                return
+
+
+        
 
 
 if __name__=='__main__':
