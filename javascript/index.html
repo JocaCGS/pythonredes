@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+    
+<main>
+    <input type="text" id="mensagem_cliente" placeholder="Digite sua mensagem">
+    <button id="enviar">Enviar</button>   
+</main>
+
+<script>
+    const socket = new WebSocket("ws://localhost:4000");
+
+    socket.onopen = () => {
+      console.log("Conectado ao servidor WebSocket");
+      socket.send(msgCliente);
+    };
+
+    socket.onmessage = (event) => {
+      console.log("Recebido do servidor:", event.data);
+    
+    };
+
+    socket.onclose = () => {
+      console.log("Conexão encerrada");
+    };
+
+    socket.onerror = (error) =>{
+        console.error("Erro no WebSocket: ", error)
+    }
+
+    document.getElementById("enviar").addEventListener("click", () => {
+      const msg = document.getElementById("mensagem_cliente").value;
+      if (msg && socket.readyState === WebSocket.OPEN) {
+        socket.send(msg);
+      }
+    });
+
+  </script>
+</body>
+
+
+</html>
